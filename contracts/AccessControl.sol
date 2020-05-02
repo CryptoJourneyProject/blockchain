@@ -5,24 +5,24 @@ contract AccessControl {
     event ContractUpgrade(address newContract);
 
     /// The addresses of the accounts (or contracts) that can execute actions.
-    mapping (address => bool) public CEOs;
+    mapping (address => bool) public owners;
 
-    /// Access modifier for CEO-only functionality
-    modifier onlyCEO() {
-        require(isCEO(msg.sender), "You must be CEO to perform this action");
+    /// Access modifier for owner-only functionality
+    modifier onlyContractOwner() {
+        require(isOwner(msg.sender), "You must be owner to perform this action");
         _;
     }
 
-    /// Assigns a new address to act as the CEO. Only available to the current CEO.
-    /// @param _ceoAddress The address of the new CEO
-    function setCEO(address _newCeoAddress) external onlyCEO {
-        require(_newCeoAddress != address(0), "Cannot set empty address to CEO");
-        CEOs[_ceoAddress] = true;
+    /// Assigns a new address to act as an owner. Only available to the current owner.
+    /// @param _newOwnerAddress The address of the new owner
+    function setOwner(address _newOwnerAddress) public {
+        require(_newOwnerAddress != address(0), "Cannot set empty address to owner");
+        owners[_newOwnerAddress] = true;
     }
 
-    /// Checks if an address belongs to a CEO.
-    /// @param _address
-    function isCEO(address _address) public returns (bool){
-        return CEOs[_address];
+    /// Checks if an address belongs to an owner.
+    /// @param _address of user
+    function isOwner(address _address) public view returns (bool){
+        return owners[_address];
     }
 }

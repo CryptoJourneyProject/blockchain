@@ -6,7 +6,7 @@ contract("CryptoJourney", (accounts) => {
     let contract;
 
     before(async() => {
-        contract = await CryptoJourney.deployed();
+        contract = await CryptoJourney.deployed({from: accounts[0]});
     })
 
     describe("deployment", async () => {
@@ -26,6 +26,20 @@ contract("CryptoJourney", (accounts) => {
         it("has a symbol", async () => {
             const symbol = await contract.symbol();
             assert.equal(symbol, "CJ");
+        })
+    })
+
+    describe("define attractions", async () => {
+        it("adds an attraction", async() => {
+            const c = await contract.addAttraction("Eiffel tower", -48000000, 170000000, "imageurl.com");
+            console.log(c)
+            const attractions = await contract.attractions();
+            assert.equal(attractions, 1);
+            assert.equal(attractions[0].name, "Eiffel tower");
+            assert.equal(attractions[0].lang, -48000000);
+            assert.equal(attractions[0].long, 170000000);
+            assert.equal(attractions[0].image, "imageurl.com");
+            assert.equal(attractions[0].price, 0.002);
         })
     })
 })
