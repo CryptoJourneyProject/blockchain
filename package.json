@@ -1,0 +1,31 @@
+{
+  "name": "blockchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CryptoJourneyProject/blockchain.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CryptoJourneyProject/blockchain/issues"
+  },
+  "homepage": "https://github.com/CryptoJourneyProject/blockchain#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.0.1",
+    "truffle": "^5.0.5",
+    "truffle-flattener": "^1.4.3"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1"
+  }
+}
