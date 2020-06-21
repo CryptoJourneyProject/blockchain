@@ -31,15 +31,13 @@ contract("CryptoJourney", (accounts) => {
 
     describe("define attractions", async () => {
         it("adds an attraction", async() => {
-            const c = await contract.addAttraction("Eiffel tower", -48000000, 170000000, "imageurl.com");
-            console.log(c)
-            const attractions = await contract.attractions();
-            assert.equal(attractions, 1);
-            assert.equal(attractions[0].name, "Eiffel tower");
-            assert.equal(attractions[0].lang, -48000000);
-            assert.equal(attractions[0].long, 170000000);
-            assert.equal(attractions[0].image, "imageurl.com");
-            assert.equal(attractions[0].price, 0.002);
+            await contract.addAttraction("Eiffel tower", -48000000, 170000000, "imageurl.com");
+            const attraction = await contract.attractions.call(0);
+            assert.equal(attraction.name, "Eiffel tower");
+            assert.equal(attraction.lang, -48000000);
+            assert.equal(attraction.long, 170000000);
+            assert.equal(attraction.image, "imageurl.com");
+            assert.equal(attraction.price, web3.utils.toWei('0.002', 'ether'));
         })
     })
 })

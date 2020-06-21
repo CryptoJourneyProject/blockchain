@@ -2,8 +2,9 @@ pragma solidity 0.5.0;
 
 import "./ERC721Full.sol";
 import "./AccessControl.sol";
+import "./Log.sol";
 
-contract CryptoJourney is AccessControl, ERC721Full {
+contract CryptoJourney is AccessControl, ERC721Full, Log {
 
     // using SafeMath32 for uint32;
 
